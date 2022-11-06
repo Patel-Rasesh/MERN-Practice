@@ -10,6 +10,29 @@ const Register = () => {
     let handleRegistration = async (e) => {
         e.preventDefault();
         try{
+            const getResponse = await fetch("http://localhost:3000/api/users/");
+            const getData = await getResponse.json();
+            let emailBox = document.getElementById('exampleInputEmail1');
+            let passwordBox = document.getElementById('exampleInputPassword1');
+            emailBox.style.borderColor = "grey";
+            passwordBox.style.borderColor = "grey";
+
+            // Check if the email address already exists
+            for (let i = 0; i < getData.length; i++) {
+                if (getData[i].email == email){
+                    emailBox.style.borderColor = "red";
+                    throw new Error('Email already exists!');
+                }
+            }
+
+            // Check the strength of the password
+            // TODO - more complex regex check for strength
+            if (password.length < 8){
+                passwordBox.style.borderColor = "red";
+                throw new Error('Password should be atleast 8 characters long!');
+            }
+
+            // Proceeding toward POST request
             let response = await fetch("http://localhost:3000/api/users", {
                 method: "POST",
 
@@ -41,34 +64,36 @@ const Register = () => {
         }
     };
     return(
-        <form onSubmit={handleRegistration} style={{marginLeft: "50px", width: "200px"}}>
-            <div class="mb-3">
-                <label class="form-label">First Name</label>
-                <input type="text" 
-                class="form-control"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}/>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Last Name</label>
-                <input type="text" class="form-control"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)} />
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="registerFormBlock">
+            <form class="registerForm" onSubmit={handleRegistration}>
+                <div class="mb-3">
+                    <label class="form-label">First Name</label>
+                    <input type="text" 
+                    class="form-control"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)} />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     );
 }
 

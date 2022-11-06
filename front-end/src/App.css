@@ -36,3 +36,97 @@
     transform: rotate(360deg);
   }
 }
+
+a{
+  text-decoration: none;
+}
+/* ================================================================================= */
+/* TOP MENUBAR */
+/* ================================================================================= */
+
+.menu{
+  /* padding: 5px 5px 5px 0px; */
+  display: flex;
+  height: 80px;
+  background-color:whitesmoke;
+}
+
+.logo{
+  width: 100%;
+  object-fit: cover;
+}
+
+.logoClass{
+  width: 100%;
+  margin: 20px 0px 20px 20px;
+  align-items: left;
+}
+
+@media (min-width: 900px) {
+  .logoClass{
+      width: 20%;
+      margin: 20px 0px 20px 50px;
+      align-items: left;
+  }
+}
+
+@media (min-width: 700px) {
+  .menu{
+      height: 120px;
+  }
+  .logoClass{
+      width: 30%;
+      margin: 20px 0px 20px 50px;
+      align-items: left;
+  }
+}
+
+.dropdown{
+  padding: 20px;
+  width: 80%;
+  text-align: right;
+}
+
+/* ================================================================================= */
+/* Login */
+/* ================================================================================= */
+.loginFormBlock{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.loginForm{
+  padding: 20px 0px 20px 0px;
+  width: 20%;
+}
+
+/* ================================================================================= */
+/* Register */
+/* ================================================================================= */
+.registerFormBlock{
+  display: flex;
+  justify-content: center;
+}
+
+.registerForm{
+  padding: 20px 0px 20px 0px;
+  width: 20%;
+}
+
+/* ================================================================================= */
+/* FOOTER */
+/* ================================================================================= */
+
+.bottom-footer{
+  background-color: whitesmoke;
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.currency{
+  justify-content: right;
+  align-items: right;
+  width: 10%;
+}
