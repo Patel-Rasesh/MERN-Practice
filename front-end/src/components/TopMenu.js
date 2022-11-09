@@ -1,7 +1,24 @@
 import React from 'react'
-const TopMenu = (props) =>{
+import { Link, Outlet } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+const TopMenu = () =>{
+    const [userName, setUserName] = useState("");
+    let fetchUserName = async (e) => {
+        console.log("Inside FetchUserName");
+        e.preventDefault();
+        try{
+            let userId = localStorage.getItem("userId");
+            const response = await fetch("http://localhost:3000/api/users/"+userId);
+            const data = await response.json();
+            setUserName(data[0].firstName+' '+data[0].lastName);
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
     return(
-        // <div class="menu fixed-top opacity-100">
         <div class="menu opacity-100">
             <div class="logoClass">
                 <img class="logo" src="./Logo-Balloon-RefinedFonts.svg"></img>
@@ -13,7 +30,12 @@ const TopMenu = (props) =>{
                 </svg>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li><button class="dropdown-item" type="button">Information</button></li>
+                <li>
+                    <button class="dropdown-item" type="button" onClick={fetchUserName}>
+                        <a href="#">Profile</a>
+                    </button>
+                    <Outlet />
+                </li>
                 <li><button class="dropdown-item" type="button">Trips</button></li>
                 <li><button class="dropdown-item" type="button">Logout</button></li>
                 </ul>

@@ -5,19 +5,23 @@ import Login from './components/login';
 import Register from './components/register';
 import TopMenu from './components/TopMenu';
 import Footer from './components/Footer';
+import Greeting from './components/Greeting';
 
 function App() {
   return (
     <>
-    <TopMenu />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ProfileStartup />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
-    <Footer />
+      <TopMenu />
+      {/* <ProfilePage /> */}
+      <Greeting />
+      {/* <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ProfileStartup />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="profile" element={<Greeting />} />
+        </Routes>
+      </BrowserRouter> */}
+      <Footer />
     </>
   );
 }

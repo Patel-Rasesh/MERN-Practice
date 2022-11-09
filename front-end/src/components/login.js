@@ -18,6 +18,8 @@ const Login = () => {
                 if (data[i].email == email && data[i].password == password){
                     isLogin = true;
                     console.log("User successfully logged in!");
+                    localStorage.setItem("userId", email);
+                    console.log(localStorage.getItem("userId"));
                     setEmail("");
                     setPassword("");
                 }
@@ -66,4 +68,4 @@ const Login = () => {
     );
 }
 
-export default Login
+export default Login;

@@ -8,7 +8,8 @@ const ProfileStartup = () => {
                 {/* If this is clicked, call Login component */}
                 <Link class="m-3" to="/login">Login</Link>
                 {/* If this is clicked, call <Register /> */}
-                <Link to="/register">Register</Link>
+                <Link class="m-3" to="/register">Register</Link>
+                <Link to="/profile">Profile</Link>
             </div>
             <Outlet />
         </>

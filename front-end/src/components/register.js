@@ -12,11 +12,28 @@ const Register = () => {
         try{
             const getResponse = await fetch("http://localhost:3000/api/users/");
             const getData = await getResponse.json();
+            let firstNameBox = document.getElementById('firstNameRegister');
+            let lastNameBox = document.getElementById('lastNameRegister');
             let emailBox = document.getElementById('exampleInputEmail1');
             let passwordBox = document.getElementById('exampleInputPassword1');
+            firstNameBox.style.borderColor = "grey";
+            lastNameBox.style.borderColor = "grey";
             emailBox.style.borderColor = "grey";
             passwordBox.style.borderColor = "grey";
 
+            if (firstName.length == 0){
+                firstNameBox.style.borderColor = "red";
+                throw new Error('First name cannot be empty!');   
+            }
+            if (lastName.length == 0){
+                lastNameBox.style.borderColor = "red";
+                throw new Error('Last name cannot be empty!');
+            }
+            if (email.length == 0){
+                emailBox.style.borderColor = "red";
+                throw new Error('Email cannot be empty!');
+            }
+            
             // Check if the email address already exists
             for (let i = 0; i < getData.length; i++) {
                 if (getData[i].email == email){
@@ -71,12 +88,14 @@ const Register = () => {
                     <input type="text" 
                     class="form-control"
                     value={firstName}
+                    id="firstNameRegister"
                     onChange={(e) => setFirstName(e.target.value)}/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Last Name</label>
                     <input type="text" class="form-control"
                     value={lastName}
+                    id="lastNameRegister"
                     onChange={(e) => setLastName(e.target.value)} />
                 </div>
                 <div class="mb-3">

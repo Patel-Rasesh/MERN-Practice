@@ -12,6 +12,13 @@ router.get('/', function(req, res){
     });
 });
 
+router.get('/:id', function(req, res) {
+	collection.find({ email: req.params.id }, function(err, user){
+		if (err) throw err;
+	  	res.json(user);
+	});
+});
+
 router.post('/', function(req, res){
     collection.insert({
         firstName : req.body.firstName,
